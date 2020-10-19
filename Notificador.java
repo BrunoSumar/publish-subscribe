@@ -4,11 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Notificador implements INotificador {
 
-    private ArrayList<Topico> topicos = new Arraylist(); // lita de tópicos
+    private ArrayList<Topico> topicos = new ArrayList(); // lita de tópicos
 
     public Notificador() { // Construtor
         super();
@@ -26,15 +27,15 @@ public class Notificador implements INotificador {
             topicos.remove(index);
     }
 
-    public int indexOfTopico(string nome){
+    public int indexOfTopico(String nome){
         for(Topico t: topicos){
-            if(t.nome.equals(nome))
+            if(t.getNome().equals(nome))
                 return topicos.indexOf(t);
         }
         return -1;
     }
 
-    public registrar(String topico, String id){
+    public void registrar(String topico, String id){
         int index = this.indexOfTopico(topico);
         Topico t;
         if(index != -1){
@@ -42,11 +43,11 @@ public class Notificador implements INotificador {
         }else{
             t = this.adicionarTopico(topico);
         }
-        t.add(id);
+        t.addId(id);
     }
 
     public static void main(String[] args) {
-        if (System.getSecurityManager() == null) {
+        if (System.getSecurityManager() == null)  {
             System.setSecurityManager(new SecurityManager());
         }
         try { // Registra o objeto notificador no RMI
