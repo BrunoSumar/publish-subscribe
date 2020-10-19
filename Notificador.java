@@ -1,15 +1,16 @@
-package publishSubscribe;
+package pubSub;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
 
 public class Notificador implements INotificador {
 
-    private ArrayList<Topico> topicos;
+    private ArrayList<Topico> topicos = new Arraylist(); // lita de tópicos
 
-    public Notificador() {
+    public Notificador() { // Construtor
         super();
     }
 
@@ -48,7 +49,7 @@ public class Notificador implements INotificador {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
-        try {
+        try { // Registra o objeto notificador no RMI
             String nome = "Notificador";
             INotificador notificador = new Notificador();
             INotificador stub =
@@ -60,5 +61,13 @@ public class Notificador implements INotificador {
             System.err.println("Erro:");
             e.printStackTrace();
         }
+        // loop principal
+        Scanner sc = new Scanner(System.in);
+        String input = "";
+        do{
+            System.out.println("Digite 'x' pra sair");
+            input = sc.nextLine();
+        }while(!input.equals("x"));
     }
+
 }
