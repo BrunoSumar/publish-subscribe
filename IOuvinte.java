@@ -1,4 +1,4 @@
-package publisherSubscribe;
+package pubSub;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
