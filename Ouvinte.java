@@ -55,12 +55,17 @@ public class Ouvinte implements IOuvinte{
                 System.out.println("0 -> Sair");
                 System.out.println("1 -> Registrar em topico");
 
-                opcao = sc.nextInt();
+                try{
+                    opcao = sc.nextInt();
+                } catch (Exception e) {}
+
                 sc.nextLine();
 
                 if (opcao == 1){
                     ouvinte.registrarTopico(servidor, ID);//Não completei, parei aqui
                 }
+
+                opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
             }
         } catch (Exception e) {
             System.err.println("Exception:");
