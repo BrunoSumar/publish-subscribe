@@ -48,8 +48,8 @@ public class Notificador implements INotificador {
 
     public void publicar(Registry reg, String topico, String info){
         int index = this.indexOfTopico(topico);
-        Topico t = topicos.get(index);
         if(index != -1){
+            Topico t = topicos.get(index);
             for(String nome: t.getIds()){
                 try{
                     IOuvinte temp = (IOuvinte) reg.lookup(nome);

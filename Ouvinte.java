@@ -13,7 +13,6 @@ public class Ouvinte implements IOuvinte{
         System.out.println("\n\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n");
         System.out.print( dados );
         System.out.println("\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n\n\n");
-        sc.next();
     }
 
     private void registrarTopico( INotificador servidor, String id ) {
