@@ -5,7 +5,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Random;
-import pubSub.IOuvinte;
 import java.util.Scanner;
 
 public class Ouvinte implements IOuvinte{
@@ -23,15 +22,15 @@ public class Ouvinte implements IOuvinte{
             Scanner sc = new Scanner(System.in);
 
             //Gerando o ID aleatório.
-            Random gerador = new Random();
+            Random gerador =new Random();
             String ID = Integer.toString(gerador.nextInt());
 
             //Criando o o bjeto remoto e exportando e registrando no rmiregistry
-            Ouvinte ouvinte = new Ouvinte();
-            Ouvinte stub = (Ouvinte) UnicastRemoteObject.exportObject(ouvinte, 1099);
-            Registry registry = LocateRegistry.getRegistry(1099);
-            registry.rebind(ID, stub);
-
+            IOuvinte ouvinte = new Ouvinte();
+            IOuvinte stub = (IOuvinte) UnicastRemoteObject.exportObject(ouvinte, 0);
+            Registry registry = LocateRegistry.getRegistry();
+            registry.rebind("nome_aleatorio", stub);
+            /*
             //Menuzinho
             int opcao = -1;
             while(opcao != 0){
@@ -46,6 +45,7 @@ public class Ouvinte implements IOuvinte{
                     //this.registrarTopico();//Não completei, parei aqui
                 }
             }
+            */
         } catch (Exception e) {
             System.err.println("Exception:");
             e.printStackTrace();

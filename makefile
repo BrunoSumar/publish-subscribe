@@ -16,8 +16,10 @@ server: $(SRC_S)
 	javac -d ./class/ $^
 
 runServer:
-	java -cp ./class -Djava.rmi.server.codebase=file:./class/ -Djava.security.policy=policy  -Djava.rmi.server.hostname="*:2001"  pubSub.Notificador
+	java -cp ./class -Djava.rmi.server.codebase=file:./class/ -Djava.security.policy=policy pubSub.Notificador
 
+runClient:
+	java -cp ./class -Djava.rmi.server.codebase=file:./class/ -Djava.security.policy=policy pubSub.Ouvinte
 
 .PHONY: comp client server runServer
 
