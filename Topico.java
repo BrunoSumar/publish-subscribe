@@ -11,6 +11,10 @@ public class Topico {
         this.nome = nome;
     }
 
+    public void getIds(){
+        return this.ids;
+    }
+
     public void addId(String nome){
         this.ids.add(nome);
     }

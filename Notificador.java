@@ -46,12 +46,28 @@ public class Notificador implements INotificador {
         t.addId(id);
     }
 
+    public void publicar(Registry reg, String topico, String info){
+        int index = this.indexOfTopico(topico);
+        Topico t = topicos.get(index);
+        if(index != -1){
+            for(String nome: t.getIds()){
+                try{
+                    IOuvinte temp = (IOuvinte) reg.lookup(nome);
+                    temp.notificar(info);
+                }catch(Exception e){
+                    System.err.println("Erro:");
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         if (System.getSecurityManager() == null)  {
             System.setSecurityManager(new SecurityManager());
         }
         try { // Registra o objeto notificador no RMI
-            //System.setProperty("java.rmi.server.hostname","127.0.0.1");
+            System.setProperty("java.rmi.server.hostname","127.0.0.1");
             Scanner sc = new Scanner(System.in);
             String nome = "Notificador";
             INotificador notificador = new Notificador();
@@ -61,20 +77,22 @@ public class Notificador implements INotificador {
             registry.bind(nome, stub);
             System.out.println("Notificador pronto.");
 
-            sc.nextLine();
-            IOuvinte stub2 = (IOuvinte) registry.lookup("nome_aleatorio");
-            stub2.notificar("eai funcionou?");
+
+            int op = 0;
+            String top;
+            String info;
+            do{
+                System.out.println("Digite o nome do topico: \n");
+                top = sc.nextLine();
+                System.out.println("Digite a informaçao a ser publicada: \n");
+                info = sc.nextLine();
+                notificador.publicar(registry,top,info);
+
+            }while(op!=0);
         } catch (Exception e) {
             System.err.println("Erro:");
             e.printStackTrace();
         }
-        // loop principal
-        Scanner sc = new Scanner(System.in);
-        String input = "";
-        do{
-            System.out.println("Digite 'x' pra sair");
-            input = sc.nextLine();
-        }while(!input.equals("x"));
     }
 
 }
