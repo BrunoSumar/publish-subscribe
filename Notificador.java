@@ -52,13 +52,18 @@ public class Notificador implements INotificador {
         }
         try { // Registra o objeto notificador no RMI
             //System.setProperty("java.rmi.server.hostname","127.0.0.1");
+            Scanner sc = new Scanner(System.in);
             String nome = "Notificador";
             INotificador notificador = new Notificador();
             INotificador stub =
-                (INotificador) UnicastRemoteObject.exportObject(notificador, 1099);
+                (INotificador) UnicastRemoteObject.exportObject(notificador, 0);
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.bind(nome, stub);
             System.out.println("Notificador pronto.");
+
+            sc.nextLine();
+            IOuvinte stub2 = (IOuvinte) registry.lookup("nome_aleatorio");
+            stub2.notificar("eai funcionou?");
         } catch (Exception e) {
             System.err.println("Erro:");
             e.printStackTrace();
