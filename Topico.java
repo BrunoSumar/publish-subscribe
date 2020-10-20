@@ -11,7 +11,7 @@ public class Topico {
         this.nome = nome;
     }
 
-    public void getIds(){
+    public ArrayList<String> getIds(){
         return this.ids;
     }
 

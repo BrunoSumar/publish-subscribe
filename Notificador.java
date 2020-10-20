@@ -56,7 +56,7 @@ public class Notificador implements INotificador {
                     temp.notificar(info);
                 }catch(Exception e){
                     System.err.println("Erro:");
-                    e.printStackTrace()
+                    e.printStackTrace();
                 }
             }
         }
@@ -70,7 +70,7 @@ public class Notificador implements INotificador {
             System.setProperty("java.rmi.server.hostname","127.0.0.1");
             Scanner sc = new Scanner(System.in);
             String nome = "Notificador";
-            INotificador notificador = new Notificador();
+            Notificador notificador = new Notificador();
             INotificador stub =
                 (INotificador) UnicastRemoteObject.exportObject(notificador, 0);
             Registry registry = LocateRegistry.createRegistry(1099);
@@ -78,7 +78,7 @@ public class Notificador implements INotificador {
             System.out.println("Notificador pronto.");
 
 
-            int op = 0;
+            int op = 1;
             String top;
             String info;
             do{

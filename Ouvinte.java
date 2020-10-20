@@ -44,7 +44,7 @@ public class Ouvinte implements IOuvinte{
             Ouvinte ouvinte = new Ouvinte();
             IOuvinte stub = (IOuvinte) UnicastRemoteObject.exportObject(ouvinte, 0);
             Registry registry = LocateRegistry.getRegistry();
-            registry.rebind("nome_aleatorio", stub);
+            registry.rebind(ID, stub);
 
             INotificador servidor = (INotificador) registry.lookup("Notificador");
 
