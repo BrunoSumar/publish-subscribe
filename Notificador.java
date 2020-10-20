@@ -51,12 +51,13 @@ public class Notificador implements INotificador {
             System.setSecurityManager(new SecurityManager());
         }
         try { // Registra o objeto notificador no RMI
+            //System.setProperty("java.rmi.server.hostname","127.0.0.1");
             String nome = "Notificador";
             INotificador notificador = new Notificador();
             INotificador stub =
-                (INotificador) UnicastRemoteObject.exportObject(notificador, 0);
-            Registry registry = LocateRegistry.getRegistry();
-            registry.rebind(nome, stub);
+                (INotificador) UnicastRemoteObject.exportObject(notificador, 1099);
+            Registry registry = LocateRegistry.createRegistry(1099);
+            registry.bind(nome, stub);
             System.out.println("Notificador pronto.");
         } catch (Exception e) {
             System.err.println("Erro:");
