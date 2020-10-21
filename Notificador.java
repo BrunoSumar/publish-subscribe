@@ -16,6 +16,8 @@ public class Notificador implements INotificador {
     }
 
     public Topico adicionarTopico(String nome){
+        if(indexOfTopico(nome)!=-1)
+            return null;
         Topico t = new Topico(nome);
         topicos.add(t);
         return t;
@@ -37,13 +39,10 @@ public class Notificador implements INotificador {
 
     public void registrar(String topico, String id){
         int index = this.indexOfTopico(topico);
-        Topico t;
         if(index != -1){
-            t = topicos.get(index);
-        }else{
-            t = this.adicionarTopico(topico);
+            Topico t = topicos.get(index);
+            t.addId(id);
         }
-        t.addId(id);
     }
 
     public void publicar(Registry reg, String topico, String info){
@@ -77,18 +76,47 @@ public class Notificador implements INotificador {
             registry.bind(nome, stub);
             System.out.println("Notificador pronto.");
 
+            //Menu
+            int opcao = -1;
+            String top, info;
+            while(opcao != 0){
+                System.out.println("Escolha uma opção: ");
+                System.out.println("\t0 -> Sair");
+                System.out.println("\t1 -> Cadastrar novo topico");
+                System.out.println("\t2 -> Remover topico");
+                System.out.println("\t3 -> Publicar informação\n");
 
-            int op = 1;
-            String top;
-            String info;
-            do{
-                System.out.println("Digite o nome do topico: \n");
-                top = sc.nextLine();
-                System.out.println("Digite a informaçao a ser publicada: \n");
-                info = sc.nextLine();
-                notificador.publicar(registry,top,info);
+                try{
+                    opcao = sc.nextInt();
+                } catch (Exception e) {}
+                sc.nextLine();
 
-            }while(op!=0);
+                switch(opcao){
+                    case 1:
+                        System.out.println("Digite o nome do tópico:");
+                        top = sc.nextLine();
+                        if(notificador.adicionarTopico(top)==null)
+                            System.out.println("--Não foi possivel criar o tópico--");
+                        break;
+                    case 2:
+                        System.out.println("Digite o nome do tópico:");
+                        top = sc.nextLine();
+                        notificador.removerTopico(top);
+                        break;
+                    case 3:
+                        System.out.println("Digite o nome do tópico:");
+                        top = sc.nextLine();
+                        System.out.println("Digite a informação a ser publicada:");
+                        info = sc.nextLine();
+                        notificador.publicar(registry, top, info);
+                        break;
+                }
+               
+                System.out.println("");
+
+                opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
+            }
+            return;
         } catch (Exception e) {
             System.err.println("Erro:");
             e.printStackTrace();

@@ -11,7 +11,7 @@ public class Ouvinte implements IOuvinte{
     public void notificar( String dados ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n");
-        System.out.print( dados );
+        System.out.print( "\t"+dados );
         System.out.println("\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n\n\n");
     }
 
@@ -47,7 +47,7 @@ public class Ouvinte implements IOuvinte{
 
             INotificador servidor = (INotificador) registry.lookup("Notificador");
 
-            //Menuzinho
+            //Menu
             int opcao = -1;
             while(opcao != 0){
                 System.out.println("Escolha uma opção: ");
