@@ -1,7 +1,7 @@
 # Paradigma publish/subscribe
 
-    Esse programa é um trabalho feito por Bruno Sumar e Bruno Macedo para a disciplina de sistemas distribuídos. 
-    Ele é uma implementação do paradigma publish/subscribe utilizando Java RMI e é dividido em duas partes: Notificador(servidor) e ouvinte(cliente).
+Esse programa é um trabalho feito por Bruno Sumar e Bruno Macedo para a disciplina de sistemas distribuídos. 
+Ele é uma implementação do paradigma publish/subscribe utilizando Java RMI e é dividido em duas partes: Notificador(servidor) e ouvinte(cliente).
     
 ## Compilação e Execução
 
