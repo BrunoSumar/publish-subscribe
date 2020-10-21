@@ -88,7 +88,9 @@ public class Notificador implements INotificador {
 
                 try{
                     opcao = sc.nextInt();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                    opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
+                }
                 sc.nextLine();
 
                 switch(opcao){
@@ -114,13 +116,12 @@ public class Notificador implements INotificador {
                
                 System.out.println("");
 
-                opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
             }
-            return;
         } catch (Exception e) {
             System.err.println("Erro:");
             e.printStackTrace();
         }
+        System.exit(0);
     }
 
 }

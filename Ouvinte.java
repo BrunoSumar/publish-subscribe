@@ -56,19 +56,21 @@ public class Ouvinte implements IOuvinte{
 
                 try{
                     opcao = sc.nextInt();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                    opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
+                }
 
                 sc.nextLine();
 
                 if (opcao == 1){
-                    ouvinte.registrarTopico(servidor, ID);//Não completei, parei aqui
+                    ouvinte.registrarTopico(servidor, ID);
                 }
 
-                opcao = -1; //Para que, caso seja colocado um valor que não é numero, não continue selecionando a opção selecionada previamente
             }
         } catch (Exception e) {
             System.err.println("Exception:");
             e.printStackTrace();
         }
+        System.exit(0);
     }
 }
