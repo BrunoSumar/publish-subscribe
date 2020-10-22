@@ -8,9 +8,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Ouvinte implements IOuvinte{
-    public void notificar( String dados ) {
+    public void notificar( String dados, String topico ) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n");
+        System.out.println("\n\n\n//----------------// N O T I F I C A Ç Ã O //------------------//");
+        System.out.println("//----------------// T O P I C O : " + topico + "\n");
         System.out.print( "\t"+dados );
         System.out.println("\n\n//----------------// N O T I F I C A Ç Ã O //------------------//\n\n\n");
     }

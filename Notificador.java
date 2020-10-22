@@ -52,7 +52,7 @@ public class Notificador implements INotificador {
             for(String nome: t.getIds()){
                 try{
                     IOuvinte temp = (IOuvinte) reg.lookup(nome);
-                    temp.notificar(info);
+                    temp.notificar(info, topico);
                 }catch(Exception e){
                     System.err.println("Erro:");
                     e.printStackTrace();
