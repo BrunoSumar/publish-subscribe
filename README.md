@@ -12,14 +12,20 @@ Para compilar o programa com o makefile basta usar o comando:
 E para executar o notificador e o ouvinte respectivamente use:
 
 >make runServer
+
 >make runClient
 
 ### Sem makefile
 Para compilar o programa com o makefile basta usar o comando:
 
->javac Ouvinte.java IOuvinte.java INotificador.java Notificador.java Topico.java
+>javac -p ./class/ Ouvinte.java IOuvinte.java INotificador.java Notificador.java Topico.java
 
 E para executar o notificador e o ouvinte respectivamente use:
 
 >java -cp ./class -Djava.rmi.server.codebase=file:./class/ -Djava.security.policy=policy pubSub.Notificador
 >java -cp ./class -Djava.rmi.server.codebase=file:./class/ -Djava.security.policy=policy pubSub.Ouvinte
+
+
+
+#### inicialiar rmi
+> rmiresgistry &

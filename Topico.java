@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Topico {
     private String nome;
 
-    private ArrayList<String> ids = new ArrayList();
+    private ArrayList<String> ids = new ArrayList<>();
 
     public Topico(String nome){
         this.nome = nome;

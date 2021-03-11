@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Notificador implements INotificador {
 
-    private ArrayList<Topico> topicos = new ArrayList(); // lita de tópicos
+    private ArrayList<Topico> topicos = new ArrayList<>(); // lita de tópicos
 
     public Notificador() { // Construtor
         super();
